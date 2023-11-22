@@ -18,8 +18,14 @@ import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import authorType from 'schemas/author'
+import commentType from 'schemas/comment'
+import eventType from 'schemas/event'
+import likeType from 'schemas/like'
+import notificationType from 'schemas/notification'
+import petType from 'schemas/pet'
 import postType from 'schemas/post'
 import settingsType from 'schemas/settings'
+import todoType from 'schemas/todo'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
@@ -31,7 +37,17 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [authorType, postType, settingsType],
+    types: [
+      authorType,
+      commentType,
+      eventType,
+      likeType,
+      notificationType,
+      todoType,
+      postType,
+      settingsType,
+      petType,
+    ],
   },
   plugins: [
     deskTool({
