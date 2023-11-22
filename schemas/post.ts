@@ -3,6 +3,7 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
 import authorType from './author'
+import eventType from './event'
 
 /**
  * This file is the schema definition for a post.
@@ -91,6 +92,31 @@ export default defineType({
       title: 'Author',
       type: 'reference',
       to: [{ type: authorType.name }],
+    }),
+    defineField({
+      name: 'likes',
+      title: 'Likes',
+      type: 'array',
+      of: [
+        {
+          name: 'author',
+          title: 'Author',
+          type: 'reference',
+          to: [{ type: 'author' }],
+        },
+      ],
+    }),
+    defineField({
+      name: 'event',
+      title: 'Event',
+      type: 'reference',
+      to: [{ type: 'event' }],
+    }),
+    defineField({
+      name: 'comments',
+      title: 'Comments',
+      type: 'reference',
+      to: [{ type: 'comment' }],
     }),
   ],
   preview: {
