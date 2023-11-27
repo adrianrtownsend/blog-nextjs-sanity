@@ -2,7 +2,7 @@ import AlertBanner from 'components/AlertBanner'
 import Container from 'components/BlogContainer'
 
 import Footer from '../Footer/Footer'
-import Header from '../Header/Header'
+import Navbar from '../Navbars/Navbar'
 
 const Layout = ({
   preview,
@@ -17,7 +17,7 @@ const Layout = ({
     <div className="min-h-screen">
       <main>
         <AlertBanner preview={preview} loading={loading} />
-        <Header />
+        <Navbar />
         <Container>{children}</Container>
         <Footer />
       </main>
