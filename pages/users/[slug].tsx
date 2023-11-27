@@ -1,19 +1,19 @@
-import PostPage from 'components/Post/PostPage'
-import PreviewPostPage from 'components/Post/PreviewPostPage'
+import PreviewUserPage from 'components/User/PreviewUserPage'
+import UserPage from 'components/User/UserPage'
 import { readToken } from 'lib/sanity.api'
 import {
-  getAllPostsSlugs,
+  getAllUsersSlugs,
   getClient,
-  getPostAndMoreStories,
   getSettings,
+  getUserAndMoreStories,
 } from 'lib/sanity.client'
-import { Post, Settings } from 'lib/sanity.queries'
+import { Settings, User } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import type { SharedPageProps } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
-  post: Post
-  morePosts: Post[]
+  user: User
+  moreUsers: User[]
   settings?: Settings
 }
 
@@ -22,27 +22,27 @@ interface Query {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const { settings, post, morePosts, draftMode } = props
+  const { settings, user, moreUsers, draftMode } = props
 
   if (draftMode) {
     return (
-      <PreviewPostPage post={post} morePosts={morePosts} settings={settings} />
+      <PreviewUserPage user={user} moreUsers={moreUsers} settings={settings} />
     )
   }
 
-  return <PostPage post={post} morePosts={morePosts} settings={settings} />
+  return <UserPage user={user} moreUsers={moreUsers} settings={settings} />
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const [settings, { post, morePosts }] = await Promise.all([
+  const [settings, { user, moreUsers }] = await Promise.all([
     getSettings(client),
-    getPostAndMoreStories(client, params.slug),
+    getUserAndMoreStories(client, params.slug),
   ])
 
-  if (!post) {
+  if (!user) {
     return {
       notFound: true,
     }
@@ -50,8 +50,8 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 
   return {
     props: {
-      post,
-      morePosts,
+      user,
+      moreUsers,
       settings,
       draftMode,
       token: draftMode ? readToken : '',
@@ -60,10 +60,23 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
-  const slugs = await getAllPostsSlugs()
+  const slugs = await getAllUsersSlugs()
 
   return {
-    paths: slugs?.map(({ slug }) => `/posts/${slug}`) || [],
+    paths: slugs?.map(({ slug }) => `/users/${slug}`) || [],
     fallback: 'blocking',
   }
 }
+/**
+ * profile of user by id
+ * view
+ *  - list item
+ *  - links
+ *      - edit
+ *      - delete
+ *      - logout
+ * edit
+ *  - form
+ *      - fields
+ *      - buttons
+ */

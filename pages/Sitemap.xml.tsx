@@ -1,4 +1,4 @@
-import { getAllPosts, getClient } from 'lib/sanity.client'
+import { getAllPosts, getAllTodos, getClient } from 'lib/sanity.client'
 
 type SitemapLocation = {
   url: string
@@ -63,6 +63,18 @@ export async function getServerSideProps({ res }) {
         url: `/posts/${post.slug}`,
         priority: 0.5,
         lastmod: new Date(post._updatedAt),
+      }
+    })
+
+  // Get list of Todo urls
+  const [todos = []] = await Promise.all([getAllTodos(client)])
+  const todoUrls: SitemapLocation[] = todos
+    .filter(({ slug = '' }) => slug)
+    .map((todo) => {
+      return {
+        url: `/todos/${todo.slug}`,
+        priority: 0.5,
+        lastmod: new Date(todo._updatedAt),
       }
     })
 

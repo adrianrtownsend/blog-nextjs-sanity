@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css'
 
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { AppProps } from 'next/app'
 import { lazy, Suspense } from 'react'
 
@@ -23,7 +24,9 @@ export default function App({
           <Component {...pageProps} />
         </PreviewProvider>
       ) : (
-        <Component {...pageProps} />
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
       )}
       {draftMode && (
         <Suspense>
