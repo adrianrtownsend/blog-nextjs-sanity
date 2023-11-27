@@ -1,5 +1,6 @@
 import { useUser } from '@auth0/nextjs-auth0/client'
-import React from 'react'
+import ProfileDropdown from 'components/Dropdowns/ProfileDropdown'
+import Link from 'next/link'
 
 const links = [
   {
@@ -21,42 +22,33 @@ const links = [
 
 const PublicHeaderButtons = () => (
   <>
-    <a
+    <Link
       className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
       href="/api/auth/login"
     >
       Login
-    </a>
+    </Link>
 
     <div className="hidden sm:flex">
-      <a
+      <Link
         className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
         href="/api/auth/signup"
       >
         Sign Up
-      </a>
+      </Link>
     </div>
   </>
 )
-const AuthenticatedHeaderButtons = () => (
-  <>
-    <a
-      className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-      href="/api/auth/logout"
-    >
-      Log Out
-    </a>
-  </>
-)
+const AuthenticatedHeaderButtons = () => <ProfileDropdown />
 
-const Header = () => {
+const Navbar = () => {
   const { user } = useUser()
   return (
     <header className="bg-white sticky top-0">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
-            <a className="block text-teal-600" href="/">
+            <Link className="block text-teal-600" href="/">
               <span className="sr-only">Home</span>
               <svg
                 className="h-8"
@@ -69,7 +61,7 @@ const Header = () => {
                   fill="currentColor"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:block">
@@ -77,12 +69,12 @@ const Header = () => {
               <ul className="flex items-center gap-6 text-sm">
                 {links.map((l, i) => (
                   <li key={i}>
-                    <a
+                    <Link
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href={l.link}
                     >
                       {l.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -90,7 +82,7 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
+            <div className="sm:flex sm:gap-4 items-center">
               {user ? <AuthenticatedHeaderButtons /> : <PublicHeaderButtons />}
             </div>
 
@@ -119,4 +111,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Navbar
