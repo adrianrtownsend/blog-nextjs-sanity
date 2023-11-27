@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const items = [
   {
     icon: (
@@ -85,17 +87,25 @@ const gridItems = items.map(({ icon, title, content, link }, index) => (
 
 const ContentGridSection = () => {
   return (
-    <section className="bg-gray-900 text-white">
+    <section id="about" className="bg-gray-900 text-white">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">
-            Kickstart your marketing
+            Project Technical Specs
           </h2>
 
           <p className="mt-4 text-gray-300">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Consequuntur aliquam doloribus nesciunt eos fugiat. Vitae aperiam
-            fugit consequuntur saepe laborum.
+            This project is a customized version of an existing Next.js
+            boilerplate. The main softwares are listed below, and the original
+            boilerplate can be found{' '}
+            <Link
+              href="https://github.com/sanity-io/nextjs-blog-cms-sanity-v3"
+              target="_blank"
+              className="underline font-bold"
+            >
+              here
+            </Link>
+            .
           </p>
         </div>
 
