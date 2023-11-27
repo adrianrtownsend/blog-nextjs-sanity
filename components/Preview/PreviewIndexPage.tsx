@@ -6,8 +6,6 @@ import {
   settingsQuery,
   type Todo,
   todoIndexQuery,
-  type User,
-  userIndexQuery,
 } from 'lib/sanity.queries'
 import { useLiveQuery } from 'next-sanity/preview'
 
@@ -24,19 +22,14 @@ export default function PreviewIndexPage(props: IndexPageProps) {
     props.todos,
     todoIndexQuery,
   )
-  const [users, loadingUsers] = useLiveQuery<User[]>(
-    props.users,
-    userIndexQuery,
-  )
 
   return (
     <IndexPage
       preview
-      loading={loadingPosts || loadingTodos || loadingSettings || loadingUsers}
+      loading={loadingPosts || loadingTodos || loadingSettings}
       posts={posts || []}
       settings={settings || {}}
       todos={todos || []}
-      users={users || []}
     />
   )
 }

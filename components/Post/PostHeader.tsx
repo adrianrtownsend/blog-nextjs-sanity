@@ -1,8 +1,9 @@
 import Avatar from 'components/AuthorAvatar'
 import CoverImage from 'components/CoverImage'
-import Date from 'components/PostDate'
-import PostTitle from 'components/PostTitle'
 import type { Post } from 'lib/sanity.queries'
+
+import Date from './PostDate'
+import PostTitle from './PostTitle'
 
 export default function PostHeader(
   props: Pick<Post, 'title' | 'coverImage' | 'date' | 'author' | 'slug'>,
