@@ -22,6 +22,7 @@ const todoFields = groq`
   authUser_sub,
   "slug": slug.current,
   "author": author->{name, picture},
+  "user": user->{name, picture, nickname},
 `
 
 const userFields = groq`
