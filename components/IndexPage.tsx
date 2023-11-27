@@ -1,17 +1,14 @@
 import Container from 'components/BlogContainer'
 import Layout from 'components/BlogLayout'
-import HeroPost from 'components/HeroPost'
 import IndexPageHead from 'components/IndexPageHead'
-import MoreStories from 'components/Post/MoreStories'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings, Todo, User } from 'lib/sanity.queries'
 
 import Footer from './Footer/Footer'
-import Header from './Header/Header'
+import Navbar from './Navbars/Navbar'
 import Hero from './Hero/Hero'
 import ContentGridSection from './Sections/ContentGridSection'
 import ItemSection from './Sections/ItemSection'
-import HeroTodo from './Todo/HeroTodo'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -24,8 +21,6 @@ export interface IndexPageProps {
 
 export default function IndexPage(props: IndexPageProps) {
   const { preview, loading, posts, settings, todos, users } = props
-  const [heroPost, ...morePosts] = posts || []
-  const [heroTodo, ...moreTodos] = todos || []
 
   const sections = [
     {
@@ -60,32 +55,10 @@ export default function IndexPage(props: IndexPageProps) {
       <IndexPageHead settings={settings} />
 
       <Layout preview={preview} loading={loading}>
-        <Container>
-          <Header />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          {heroTodo && (
-            <HeroTodo
-              title={heroTodo.title}
-              content={heroTodo.content}
-              date={heroPost.date}
-              slug={heroTodo.slug}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={moreTodos} />}
-          <Hero />
-          <ContentGridSection />
-          {itemSections}
-        </Container>
+        <Navbar />
+        <Hero />
+        <ContentGridSection />
+        <Container>{itemSections}</Container>
         <Footer />
       </Layout>
     </>

@@ -1,11 +1,8 @@
 import TodoCard from 'components/Cards/TodoCard'
-import Form from 'components/Form/Form'
 import ReactHookForm from 'components/Form/ReactHookForm'
+import ItemHeader from 'components/Headers/ItemHeader'
 import Layout from 'components/Layouts/Layout'
 import SectionSeparator from 'components/SectionSeparator'
-import MoreStories from 'components/Todo/MoreStories'
-import TodoBody from 'components/Todo/TodoBody'
-import TodoHeader from 'components/Todo/TodoHeader'
 import TodoPageHead from 'components/Todo/TodoPageHead'
 import TodoTitle from 'components/Todo/TodoTitle'
 import type { Settings, Todo } from 'lib/sanity.queries'
@@ -19,10 +16,8 @@ export interface TodoPageProps {
   settings: Settings
 }
 
-const NO_TODOS: Todo[] = []
-
 export default function TodoPage(props: TodoPageProps) {
-  const { preview, loading, moreTodos = NO_TODOS, todo, settings } = props
+  const { preview, loading, todo, settings } = props
 
   const slug = todo?.slug
 
@@ -40,14 +35,11 @@ export default function TodoPage(props: TodoPageProps) {
         ) : (
           <>
             <article>
-              <TodoCard />
-              <Form />
-              <ReactHookForm />
-              <TodoHeader title={todo.title} date={todo.date} />
-              <TodoBody content={todo.content} />
+              <ItemHeader />
+              <TodoCard {...todo} />
+              <ReactHookForm item={todo} />
             </article>
             <SectionSeparator />
-            {moreTodos?.length > 0 && <MoreStories todos={moreTodos} />}
           </>
         )}
       </Layout>

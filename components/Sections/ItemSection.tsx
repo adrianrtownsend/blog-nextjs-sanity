@@ -1,7 +1,6 @@
 import EventCard from 'components/Cards/EventCard'
 import TodoCard from 'components/Cards/TodoCard'
 import UserCard from 'components/Cards/UserCard'
-import React from 'react'
 
 export interface ItemSectionProps {
   type?: string
@@ -29,7 +28,7 @@ const ItemSection = ({
   description = 'Default description',
   scrollId,
 }: ItemSectionProps) => {
-  const testItems = items.map((e, i) => (
+  const sectionItems = items.map((e, i) => (
     <div key={i} className="grid gap-1 py-3 sm:gap-4">
       {getSectionItem(type, e)}
     </div>
@@ -60,7 +59,9 @@ const ItemSection = ({
       </div>
 
       <div className="flow-root overflow-auto max-h-96">
-        <dl className="-my-3 divide-y divide-gray-100 text-sm">{testItems}</dl>
+        <dl className="-my-3 divide-y divide-gray-100 text-sm">
+          {sectionItems}
+        </dl>
       </div>
     </section>
   )
