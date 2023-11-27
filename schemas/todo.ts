@@ -13,6 +13,17 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'string',
@@ -43,6 +54,17 @@ export default defineType({
       title: 'Author',
       type: 'reference',
       to: [{ type: authorType.name }],
+    }),
+    defineField({
+      name: 'user',
+      title: 'User',
+      type: 'reference',
+      to: [{ type: 'user' }],
+    }),
+    defineField({
+      name: 'authUser_sub',
+      title: 'Auth0 User',
+      type: 'string',
     }),
   ],
 })
