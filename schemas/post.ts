@@ -3,7 +3,6 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
 import authorType from './author'
-import eventType from './event'
 
 /**
  * This file is the schema definition for a post.

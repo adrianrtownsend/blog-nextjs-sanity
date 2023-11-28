@@ -26,6 +26,7 @@ import petType from 'schemas/pet'
 import postType from 'schemas/post'
 import settingsType from 'schemas/settings'
 import todoType from 'schemas/todo'
+import userType from 'schemas/user'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
@@ -47,6 +48,7 @@ export default defineConfig({
       postType,
       settingsType,
       petType,
+      userType,
     ],
   },
   plugins: [
