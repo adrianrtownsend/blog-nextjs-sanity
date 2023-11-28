@@ -34,7 +34,7 @@ export default function EventPage(props: EventPageProps) {
         ) : (
           <>
             <article>
-              <EventCard item={event} />
+              <EventCard {...event} />
               <ItemHeader item={event} />
               <ReactHookForm item={event} />
             </article>

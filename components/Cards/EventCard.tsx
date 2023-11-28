@@ -54,8 +54,8 @@ export const eventDateStatusFormat = (startDate: string, endDate: string) => {
   }
 }
 
-const EventCard = ({ item }) => {
-  const { title, content, date, startDate, endDate, user, slug } = item
+const EventCard = (props) => {
+  const { title, content, date, startDate, endDate, user, slug } = props
   return (
     <article className="rounded-xl bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
       <div className="flex items-start sm:gap-8">
