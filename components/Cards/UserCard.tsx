@@ -1,4 +1,13 @@
-const UserCard = () => {
+interface IUserCardProps {
+  name: string
+  nickname: string
+  picture: string
+  slug: string
+}
+
+const UserCard = (props: IUserCardProps) => {
+  const { name, nickname, picture, slug } = props
+  console.log('user props: ', props)
   return (
     <article className="rounded-xl border border-gray-700 bg-gray-800 p-4">
       <div className="flex items-center gap-4">
@@ -9,7 +18,7 @@ const UserCard = () => {
         />
 
         <div>
-          <h3 className="text-lg font-medium text-white">Claire Mac</h3>
+          <h3 className="text-lg font-medium text-white">{name || nickname}</h3>
 
           <div className="flow-root">
             <ul className="-m-1 flex flex-wrap">

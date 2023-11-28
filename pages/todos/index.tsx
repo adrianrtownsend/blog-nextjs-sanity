@@ -13,12 +13,12 @@ const Todo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    createTodo({
-      _type: 'todo',
-      title,
-      content,
-      authUser_sub: user.sub,
-    })
+    // createTodo({
+    //   _type: 'todo',
+    //   title,
+    //   content,
+    //   authUser_sub: user.sub,
+    // })
   }
 
   if (!user) {

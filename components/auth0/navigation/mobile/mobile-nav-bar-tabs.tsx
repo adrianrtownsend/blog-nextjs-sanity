@@ -1,15 +1,16 @@
-import { useUser } from "@auth0/nextjs-auth0/client";
-import React from "react";
-import { MobileNavBarTab } from "./mobile-nav-bar-tab";
+import { useUser } from '@auth0/nextjs-auth0/client'
+import React from 'react'
+
+import { MobileNavBarTab } from './mobile-nav-bar-tab'
 
 interface MobileNavBarTabsProps {
-  handleClick: () => void;
+  handleClick: () => void
 }
 
 export const MobileNavBarTabs: React.FC<MobileNavBarTabsProps> = ({
   handleClick,
 }) => {
-  const { user } = useUser();
+  const { user } = useUser()
 
   return (
     <div className="mobile-nav-bar__tabs">
@@ -38,5 +39,5 @@ export const MobileNavBarTabs: React.FC<MobileNavBarTabsProps> = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}

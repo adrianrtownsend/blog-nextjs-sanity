@@ -35,8 +35,8 @@ export default function TodoPage(props: TodoPageProps) {
         ) : (
           <>
             <article>
-              <ItemHeader />
               <TodoCard {...todo} />
+              <ItemHeader item={todo} />
               <ReactHookForm item={todo} />
             </article>
             <SectionSeparator />

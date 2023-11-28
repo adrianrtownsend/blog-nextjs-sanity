@@ -1,12 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-
-import { Message } from '../../../models/message'
-
-const getPublicMessage = async (
-  req: NextApiRequest,
-  res: NextApiResponse<Message>,
-) => {
-  const message: Message = {
+const getPublicMessage = async (req, res) => {
+  const message = {
     text: 'This is a public message.',
   }
 

@@ -36,6 +36,18 @@ const userFields = groq`
   _updatedAt,
 `
 
+const eventFields = groq`
+  _id,
+  title,
+  date,
+  startDate,
+  endDate,
+  content,
+  _updatedAt,
+  "slug": slug.current,
+  "user": user->{name, picture, nickname},
+`
+
 export const settingsQuery = groq`*[_type == "settings"][0]`
 
 /**
@@ -135,6 +147,39 @@ export const userByUserIdQuery = groq`
 }
 `
 
+/**
+ * Event Queries
+ */
+export const eventIndexQuery = groq`
+*[_type == "event"] | order(date desc, _updatedAt desc) {
+  ${eventFields}
+}`
+
+export const eventAndMoreStoriesQuery = groq`
+{
+  "event": *[_type == "event" && slug.current == $slug] | order(_updatedAt desc) [0] {
+    content,
+    ${eventFields}
+  },
+  "moreEvents": *[_type == "event" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
+    content,
+    ${eventFields}
+  }
+}`
+
+export const eventSlugsQuery = groq`
+*[_type == "event" && defined(slug.current)][].slug.current
+`
+
+export const eventBySlugQuery = groq`
+*[_type == "event" && slug.current == $slug][0] {
+  ${eventFields}
+}
+`
+
+/**
+ * Types
+ */
 export interface Author {
   name?: string
   picture?: any
@@ -166,6 +211,7 @@ export interface Todo {
   coverImage?: any
   date?: string
   _updatedAt?: string
+  completed?: boolean
   excerpt?: string
   author?: Author
   slug?: string

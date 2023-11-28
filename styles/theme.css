@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap');
 
 /* Theme */
 
@@ -65,7 +65,7 @@
     var(--yellow) 102.78%
   );
 
-  --font-primary: "Inter", sans-serif;
-  --font-secondary: "Space Grotesk", sans-serif;
-  --font-mono: "Fira Code", monospace;
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Space Grotesk', sans-serif;
+  --font-mono: 'Fira Code', monospace;
 }

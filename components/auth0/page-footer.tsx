@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 
-import { Auth0Resource } from '../../models/auth0-resource'
 import { PageFooterHyperlink } from './page-footer-hyperlink'
 
 export const PageFooter = () => {
-  const resourceList: Auth0Resource[] = [
+  const resourceList = [
     {
       path: 'https://auth0.com/why-auth0/',
       label: 'Why Auth0',

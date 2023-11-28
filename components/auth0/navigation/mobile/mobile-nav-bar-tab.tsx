@@ -1,11 +1,11 @@
-import { useRouter } from "next/router";
-import React from "react";
-import Link from "next/link";
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React from 'react'
 
 interface MobileNavBarTabProps {
-  path: string;
-  label: string;
-  handleClick: () => void;
+  path: string
+  label: string
+  handleClick: () => void
 }
 
 export const MobileNavBarTab: React.FC<MobileNavBarTabProps> = ({
@@ -13,13 +13,13 @@ export const MobileNavBarTab: React.FC<MobileNavBarTabProps> = ({
   label,
   handleClick,
 }) => {
-  const router = useRouter();
-  const isRouteActive = (path: string) => router.pathname === path;
+  const router = useRouter()
+  const isRouteActive = (path: string) => router.pathname === path
 
-  let mobileNavBarTabClassName = "mobile-nav-bar__tab";
+  let mobileNavBarTabClassName = 'mobile-nav-bar__tab'
 
   if (isRouteActive(path)) {
-    mobileNavBarTabClassName += " mobile-nav-bar__tab--active";
+    mobileNavBarTabClassName += ' mobile-nav-bar__tab--active'
   }
 
   return (
@@ -30,5 +30,5 @@ export const MobileNavBarTab: React.FC<MobileNavBarTabProps> = ({
     >
       <div>{label}</div>
     </Link>
-  );
-};
+  )
+}

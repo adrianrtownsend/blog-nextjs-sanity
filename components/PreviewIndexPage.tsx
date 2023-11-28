@@ -1,5 +1,7 @@
 import IndexPage, { type IndexPageProps } from 'components/IndexPage'
 import {
+  type Event,
+  eventIndexQuery,
   type Post,
   postIndexQuery,
   type Settings,
@@ -24,6 +26,10 @@ export default function PreviewIndexPage(props: IndexPageProps) {
     props.todos,
     todoIndexQuery,
   )
+  const [events, loadingEvents] = useLiveQuery<Event[]>(
+    props.events,
+    eventIndexQuery,
+  )
   const [users, loadingUsers] = useLiveQuery<User[]>(
     props.users,
     userIndexQuery,
@@ -32,10 +38,17 @@ export default function PreviewIndexPage(props: IndexPageProps) {
   return (
     <IndexPage
       preview
-      loading={loadingPosts || loadingTodos || loadingSettings || loadingUsers}
+      loading={
+        loadingPosts ||
+        loadingTodos ||
+        loadingSettings ||
+        loadingEvents ||
+        loadingUsers
+      }
       posts={posts || []}
       settings={settings || {}}
       todos={todos || []}
+      events={events || []}
       users={users || []}
     />
   )

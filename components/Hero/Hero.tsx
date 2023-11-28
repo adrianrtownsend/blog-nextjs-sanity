@@ -22,12 +22,6 @@ const Hero = () => {
             </a>
             <a
               className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-              href="#posts"
-            >
-              Posts
-            </a>
-            <a
-              className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
               href="#todos"
             >
               Todos
@@ -37,6 +31,12 @@ const Hero = () => {
               href="#users"
             >
               Users
+            </a>
+            <a
+              className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+              href="#events"
+            >
+              Events
             </a>
           </div>
         </div>

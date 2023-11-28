@@ -3,5 +3,5 @@ export const LogoutButton = () => {
     <a className="button__logout" href="/api/auth/logout">
       Log Out
     </a>
-  );
-};
+  )
+}

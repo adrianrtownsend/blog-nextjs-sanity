@@ -1,6 +1,7 @@
 import Container from 'components/BlogContainer'
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
+import ReactHookForm from 'components/Form/ReactHookForm'
 import SectionSeparator from 'components/SectionSeparator'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
@@ -11,7 +12,6 @@ import PostBody from './PostBody'
 import PostHeader from './PostHeader'
 import PostPageHead from './PostPageHead'
 import PostTitle from './PostTitle'
-import ReactHookForm from 'components/Form/ReactHookForm'
 
 export interface PostPageProps {
   preview?: boolean

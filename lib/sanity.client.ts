@@ -4,9 +4,13 @@ import {
   projectId,
   studioUrl,
   useCdn,
-  writeToken,
 } from 'lib/sanity.api'
 import {
+  type Event,
+  eventAndMoreStoriesQuery,
+  eventBySlugQuery,
+  eventIndexQuery,
+  eventSlugsQuery,
   type Post,
   postAndMoreStoriesQuery,
   postBySlugQuery,
@@ -158,6 +162,33 @@ export async function getUserByUserId(user_id: string): Promise<void | User> {
 export async function getUserAndMoreStories(
   client: SanityClient,
   slug: string,
-): Promise<{ user: User; moreTodos: User[] }> {
+): Promise<{ user: User; moreUsers: User[] }> {
   return await client.fetch(userAndMoreStoriesQuery, { slug })
+}
+
+/**
+ * Events
+ */
+export async function getAllEvents(client: SanityClient): Promise<Event[]> {
+  return (await client.fetch(eventIndexQuery)) || []
+}
+
+export async function getAllEventsSlugs(): Promise<Pick<Event, 'slug'>[]> {
+  const client = getClient()
+  const slugs = (await client.fetch<string[]>(eventSlugsQuery)) || []
+  return slugs.map((slug) => ({ slug }))
+}
+
+export async function getEventBySlug(
+  client: SanityClient,
+  slug: string,
+): Promise<Event> {
+  return (await client.fetch(eventBySlugQuery, { slug })) || ({} as any)
+}
+
+export async function getEventAndMoreStories(
+  client: SanityClient,
+  slug: string,
+): Promise<{ event: Event; moreEvents: Event[] }> {
+  return await client.fetch(eventAndMoreStoriesQuery, { slug })
 }

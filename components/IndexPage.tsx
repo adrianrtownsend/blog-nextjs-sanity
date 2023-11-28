@@ -1,18 +1,18 @@
 import Container from 'components/BlogContainer'
 import Layout from 'components/BlogLayout'
 import IndexPageHead from 'components/IndexPageHead'
-import * as demo from 'lib/demo.data'
-import type { Post, Settings, Todo, User } from 'lib/sanity.queries'
+import type { Event, Post, Settings, Todo, User } from 'lib/sanity.queries'
 
 import Footer from './Footer/Footer'
-import Navbar from './Navbars/Navbar'
 import Hero from './Hero/Hero'
+import Navbar from './Navbars/Navbar'
 import ContentGridSection from './Sections/ContentGridSection'
 import ItemSection from './Sections/ItemSection'
 
 export interface IndexPageProps {
   preview?: boolean
   loading?: boolean
+  events: Event[]
   posts: Post[]
   todos: Todo[]
   users: User[]
@@ -20,7 +20,7 @@ export interface IndexPageProps {
 }
 
 export default function IndexPage(props: IndexPageProps) {
-  const { preview, loading, posts, settings, todos, users } = props
+  const { preview, loading, events, posts, settings, todos, users } = props
 
   const sections = [
     {
@@ -36,13 +36,21 @@ export default function IndexPage(props: IndexPageProps) {
       scrollId: 'users',
       title: 'Users',
       description: 'Active user accounts for app',
+      canAdd: false,
     },
+    // {
+    //   type: '_post',
+    //   items: posts,
+    //   scrollId: 'posts',
+    //   title: 'Posts',
+    //   description: 'Basic Post items',
+    // },
     {
-      type: '_post',
-      items: posts,
-      scrollId: 'posts',
-      title: 'Posts',
-      description: 'Basic Post items',
+      type: '_event',
+      items: events,
+      scrollId: 'events',
+      title: 'Events',
+      description: 'Basic Event items',
     },
   ]
 

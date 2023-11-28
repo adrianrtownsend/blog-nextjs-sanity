@@ -4,11 +4,6 @@ import Link from 'next/link'
 
 const links = [
   {
-    name: 'posts',
-    link: '#posts',
-    label: 'Posts',
-  },
-  {
     name: 'todos',
     link: '#todos',
     label: 'Todos',
@@ -17,6 +12,11 @@ const links = [
     name: 'users',
     link: '#users',
     label: 'Users',
+  },
+  {
+    name: 'events',
+    link: '#events',
+    label: 'Events',
   },
 ]
 

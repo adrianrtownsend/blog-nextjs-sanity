@@ -23,7 +23,7 @@ import Link from 'next/link'
  */
 
 export const formatDateRelative = (date: string) => {
-  return formatDistance(subDays(new Date(date), 3), new Date(), {
+  return formatDistance(new Date(date), new Date(), {
     addSuffix: true,
   })
 }

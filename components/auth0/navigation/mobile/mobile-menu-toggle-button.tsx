@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
 interface MobileMenuToggleButtonProps {
-  icon: string;
-  handleClick: () => void;
+  icon: string
+  handleClick: () => void
 }
 
 export const MobileMenuToggleButton: React.FC<MobileMenuToggleButtonProps> = ({
@@ -17,5 +17,5 @@ export const MobileMenuToggleButton: React.FC<MobileMenuToggleButtonProps> = ({
     >
       {icon}
     </span>
-  );
-};
+  )
+}

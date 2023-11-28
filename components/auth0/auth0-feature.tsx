@@ -1,11 +1,11 @@
-import React from "react";
-import Image from "next/image";
+import Image from 'next/image'
+import React from 'react'
 
 interface Auth0FeatureProps {
-  title: string;
-  description: string;
-  resourceUrl: string;
-  icon: string;
+  title: string
+  description: string
+  resourceUrl: string
+  icon: string
 }
 
 export const Auth0Feature: React.FC<Auth0FeatureProps> = ({
@@ -32,4 +32,4 @@ export const Auth0Feature: React.FC<Auth0FeatureProps> = ({
     </h3>
     <p className="auth0-feature__description">{description}</p>
   </a>
-);
+)

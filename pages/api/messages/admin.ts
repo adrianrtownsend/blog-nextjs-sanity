@@ -1,13 +1,7 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0'
-import { NextApiRequest, NextApiResponse } from 'next'
 
-import { Message } from '../../../models/message'
-
-const getAdminMessage = async (
-  req: NextApiRequest,
-  res: NextApiResponse<Message>,
-) => {
-  const message: Message = {
+const getAdminMessage = async (req, res) => {
+  const message = {
     text: 'This is an admin message.',
   }
 

@@ -74,7 +74,7 @@ const ReactHookForm = ({ item, layout }: IReactHookFormProps) => {
                           required: 'Title is required',
                         })}
                       />
-                      {errors.title && <p>{errors.title.message}</p>}
+                      {/* {errors.title && <p>{errors?.title?.message}</p>} */}
                     </div>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ const ReactHookForm = ({ item, layout }: IReactHookFormProps) => {
                           required: 'Content is required',
                         })}
                       />
-                      {errors.content && <p>{errors.content.message}</p>}
+                      {/* {errors.content && <p>{errors.content.message}</p>} */}
                     </div>
                   </div>
                 </div>

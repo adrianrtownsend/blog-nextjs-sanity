@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 interface MobileNavBarBrandProps {
-  handleClick: () => void;
+  handleClick: () => void
 }
 
 export const MobileNavBarBrand: React.FC<MobileNavBarBrandProps> = ({
@@ -21,5 +21,5 @@ export const MobileNavBarBrand: React.FC<MobileNavBarBrandProps> = ({
         />
       </Link>
     </div>
-  );
-};
+  )
+}
