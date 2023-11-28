@@ -23,7 +23,7 @@ const useAuthGetToken = async () => {
     }),
   }
   const response = await useAuthRequest(options)
-  return response?.data?.access_token
+  return response
 }
 
 export const useAuthGetUsers = async () => {
@@ -36,7 +36,7 @@ export const useAuthGetUsers = async () => {
     headers: { authorization: `Bearer ${token}` },
   }
   const response = await useAuthRequest(options)
-  return response.data
+  return response
 }
 
 export const useAuthGetUser = async () => {
@@ -49,5 +49,5 @@ export const useAuthGetUser = async () => {
     headers: { authorization: `Bearer ${token}` },
   }
   const response = await useAuthRequest(options)
-  return response.data
+  return response
 }
