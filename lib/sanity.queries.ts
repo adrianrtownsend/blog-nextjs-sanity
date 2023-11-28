@@ -34,6 +34,7 @@ const userFields = groq`
   user_id,
   type,
   _updatedAt,
+  "slug": slug.current,
 `
 
 const eventFields = groq`
