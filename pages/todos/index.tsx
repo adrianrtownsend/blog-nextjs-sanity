@@ -1,4 +1,4 @@
-import { default as authClient, useUser } from '@auth0/nextjs-auth0/client'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import TodoCard from 'components/HyperUI/TodoCard'
 import { createTodo } from 'lib/sanity.mutations'
 import { useState } from 'react'
@@ -8,8 +8,6 @@ const Todo = () => {
   const [content, setContent] = useState('')
 
   const { user } = useUser()
-  console.log('user:', user)
-  console.log('authClient: ', authClient)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
