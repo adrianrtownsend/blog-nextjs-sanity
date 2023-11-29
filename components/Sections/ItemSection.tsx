@@ -9,6 +9,7 @@ export interface ItemSectionProps {
   title?: string
   description?: string
   scrollId?: string
+  canAdd?: boolean
 }
 
 const getSectionItem = (type, props) => {
@@ -27,6 +28,7 @@ const ItemSection = ({
   title = 'Default Title',
   description = 'Default description',
   scrollId,
+  canAdd,
 }: ItemSectionProps) => {
   const sectionItems = items.map((e, i) => (
     <div key={i} className="grid gap-1 py-3 sm:gap-4">
@@ -47,7 +49,7 @@ const ItemSection = ({
 
           <p className="hidden text-gray-500 md:mt-4 md:block">{description}</p>
 
-          {createLink && (
+          {canAdd && createLink && (
             <div className="mt-4 md:mt-8">
               <a
                 href={createLink}

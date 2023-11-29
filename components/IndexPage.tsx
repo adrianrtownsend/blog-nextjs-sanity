@@ -9,6 +9,7 @@ import Hero from './Hero/Hero'
 import Navbar from './Navbars/Navbar'
 import ContentGridSection from './Sections/ContentGridSection'
 import ItemSection from './Sections/ItemSection'
+import { useUser } from '@auth0/nextjs-auth0/client'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -22,7 +23,8 @@ export interface IndexPageProps {
 
 export default function IndexPage(props: IndexPageProps) {
   const { preview, loading, events, posts, settings, todos, users } = props
-
+  const { user } = useUser()
+  console.log('user at front: ', user)
   const sections = [
     {
       type: '_todo',
@@ -31,6 +33,7 @@ export default function IndexPage(props: IndexPageProps) {
       title: 'Todos',
       description: 'Basic Todo items',
       createLink: '/todos/new',
+      canAdd: !!user,
     },
     {
       type: '_user',
@@ -55,6 +58,7 @@ export default function IndexPage(props: IndexPageProps) {
       title: 'Events',
       description: 'Basic Event items',
       createLink: '/events/new',
+      canAdd: !!user,
     },
   ]
 
