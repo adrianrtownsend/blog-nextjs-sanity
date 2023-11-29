@@ -5,8 +5,8 @@ import { Settings, Todo } from 'lib/sanity.queries'
 import Head from 'next/head'
 
 export interface TodoPageHeadProps {
-  settings: Settings
-  todo: Todo
+  settings?: Settings
+  todo?: Todo
 }
 
 export default function TodoPageHead({ settings, todo }: TodoPageHeadProps) {
