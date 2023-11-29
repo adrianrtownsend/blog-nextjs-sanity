@@ -59,8 +59,6 @@ export const createTodo = async (
     console.log('found user: ', user)
     const writeClient = getClient(undefined, {
       token: writeToken,
-      // token:
-      //   'skBZRwXqsYvYCjoou8Ck3vNArS582XjCG7KhHPTsnV3SOXwLPsjiigsMw2rParnG6PQZ74ecQFqiM3wy0S9zrjZT1AR89sptnfTK6vWA70LJRXQfhuPWvEhjuWsLCaZXOGrBuSNiivVjWWHRpE2LuXT81VD9xeFJxKoTueSLsL6CzguGKW5s',
     })
 
     return writeClient.create({
