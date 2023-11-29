@@ -1,4 +1,8 @@
 import 'tailwindcss/tailwind.css'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { AppProps } from 'next/app'

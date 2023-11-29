@@ -1,7 +1,7 @@
 import Container from 'components/BlogContainer'
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
-import ReactHookForm from 'components/Form/ReactHookForm'
+// import ReactHookForm from 'components/Form/ReactHookForm'
 import SectionSeparator from 'components/SectionSeparator'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
@@ -52,7 +52,6 @@ export default function PostPage(props: PostPageProps) {
                   author={post.author}
                 />
                 <PostBody content={post.content} />
-                <ReactHookForm />
               </article>
               <SectionSeparator />
               {morePosts?.length > 0 && <MoreStories posts={morePosts} />}

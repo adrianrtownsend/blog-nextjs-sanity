@@ -1,11 +1,5 @@
-import {
-  CalendarIcon,
-  MapPinIcon,
-  PencilIcon,
-  UserIcon,
-} from '@heroicons/react/20/solid'
+import { CalendarIcon, MapPinIcon, UserIcon } from '@heroicons/react/20/solid'
 import { formatDateRelative } from 'components/Cards/TodoCard'
-import FlyoutForm from 'components/Flyouts/FlyoutForm'
 import ConfirmModal from 'components/Modals/ConfirmModal'
 
 export interface IItemHeaderProps {
@@ -15,11 +9,12 @@ export interface IItemHeaderProps {
     date?: string
     completed?: boolean
   }
+  onConfirm?: () => Promise<void>
 }
 
-const ItemHeader = ({ item }: IItemHeaderProps) => {
+const ItemHeader = ({ item, onConfirm }: IItemHeaderProps) => {
   return (
-    <div className="lg:flex lg:items-center lg:justify-between m-4">
+    <div className="flex flex-wrap  lg:items-center lg:justify-between m-4">
       <div className="min-w-0 flex-1">
         <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
           {item.title}
@@ -51,21 +46,7 @@ const ItemHeader = ({ item }: IItemHeaderProps) => {
         </div>
       </div>
       <div className="mt-5 flex lg:ml-4 lg:mt-0">
-        <span>
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
-            <PencilIcon
-              className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-            Edit
-          </button>
-        </span>
-
-        <ConfirmModal />
-        <FlyoutForm />
+        <ConfirmModal onConfirm={onConfirm} />
       </div>
     </div>
   )

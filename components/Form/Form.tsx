@@ -1,72 +1,43 @@
-import React from 'react'
+// components/TodoCreateReactHookForm.js
 
-const Form = () => {
+import { getFormLayout } from './useLayout'
+
+const Form = ({ title = '', content = '', type, form, onSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form
+
   return (
     <section>
-      <div className="mx-auto max-w-screen-xl py-16 ">
-        <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-          <form action="" className="space-y-4">
-            <div>
-              <label className="sr-only" htmlFor="name">
-                Name
-              </label>
-              <input
-                className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Name"
-                type="text"
-                id="name"
-              />
+      <div className="mx-auto w-full p-4 ">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="space-y-12">
+            <div className="border-b border-gray-900/10 pb-12">
+              <h2 className="text-base font-semibold leading-7 text-gray-900">
+                {title}
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-gray-600">{content}</p>
+              {getFormLayout(type, register, errors)}
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className="sr-only" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                  placeholder="Email address"
-                  type="email"
-                  id="email"
-                />
-              </div>
-
-              <div>
-                <label className="sr-only" htmlFor="phone">
-                  Phone
-                </label>
-                <input
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                  placeholder="Phone Number"
-                  type="tel"
-                  id="phone"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="sr-only" htmlFor="message">
-                Message
-              </label>
-
-              <textarea
-                className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Message"
-                rows={8}
-                id="message"
-              ></textarea>
-            </div>
-
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
-              >
-                Send Enquiry
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="mt-6 flex items-center justify-end gap-x-6">
+            <button
+              type="button"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </section>
   )

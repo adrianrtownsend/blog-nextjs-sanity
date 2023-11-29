@@ -1,6 +1,6 @@
 import EventCard from 'components/Cards/EventCard'
 import EventPageHead from 'components/Event/EventPageHead'
-import ReactHookForm from 'components/Form/ReactHookForm'
+// import ReactHookForm from 'components/Form/ReactHookForm'
 import ItemHeader from 'components/Headers/ItemHeader'
 import Layout from 'components/Layouts/Layout'
 import SectionSeparator from 'components/SectionSeparator'
@@ -36,7 +36,7 @@ export default function EventPage(props: EventPageProps) {
             <article>
               <EventCard {...event} />
               <ItemHeader item={event} />
-              <ReactHookForm item={event} />
+              {/* <ReactHookForm item={event} /> */}
             </article>
             <SectionSeparator />
           </>

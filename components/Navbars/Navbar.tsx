@@ -5,17 +5,17 @@ import Link from 'next/link'
 const links = [
   {
     name: 'todos',
-    link: '#todos',
+    link: '/#todos',
     label: 'Todos',
   },
   {
     name: 'users',
-    link: '#users',
+    link: '/#users',
     label: 'Users',
   },
   {
     name: 'events',
-    link: '#events',
+    link: '/#events',
     label: 'Events',
   },
 ]

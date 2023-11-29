@@ -1,3 +1,4 @@
+import UserCard from 'components/Cards/UserCard'
 import Layout from 'components/Layouts/Layout'
 import SectionSeparator from 'components/SectionSeparator'
 import type { Settings, User } from 'lib/sanity.queries'
@@ -26,6 +27,8 @@ export default function UserPage(props: UserPageProps) {
     notFound()
   }
 
+  console.log('user from page: ', user)
+
   return (
     <>
       <UserPageHead settings={settings} user={user} />
@@ -36,16 +39,9 @@ export default function UserPage(props: UserPageProps) {
         ) : (
           <>
             <article>
-              {/* <UserHeader
-                  title={user.title}
-                  coverImage={user.coverImage}
-                  date={user.date}
-                  author={user.author}
-                /> */}
-              {/* <UserBody content={user.content} /> */}
+              <UserCard {...user} />
             </article>
             <SectionSeparator />
-            {moreUsers?.length > 0 && <MoreStories users={moreUsers} />}
           </>
         )}
       </Layout>
