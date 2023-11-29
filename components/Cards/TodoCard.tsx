@@ -1,26 +1,5 @@
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { formatDistance } from 'date-fns'
 import Link from 'next/link'
-/**
- * 
- * {
-    "_id": "7dda52b3-fc93-44c2-ade2-7dfb4ebf0e25",
-    "date": "2023-11-24T18:02:11.340Z",
-    "slug": "my-test-todo",
-    "user": {
-        "_id": "7fba7b3d-b42f-4b4e-8fa7-55c67aa305bf",
-        "name": "adrianrtownsend",
-        "picture": "https://avatars.githubusercontent.com/u/21168942?v=4",
-        "nickname": "adrianrtownsend"
-    },
-    "title": "my test todo",
-    "content": "my test todo content",
-    "_updatedAt": "2023-11-24T18:08:14Z",
-    "completed": null,
-    "favorited": null,
-    "authUser_sub": null,
-    "author": null
-}
- */
 
 export const formatDateRelative = (date: string) => {
   return formatDistance(new Date(date), new Date(), {
@@ -29,7 +8,7 @@ export const formatDateRelative = (date: string) => {
 }
 
 const TodoCard = (props) => {
-  const { content, date, title, user, slug } = props
+  const { date, title, user, slug } = props
   return (
     <Link
       href={`/todos/${slug}`}
