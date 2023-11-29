@@ -47,14 +47,16 @@ const ItemSection = ({
 
           <p className="hidden text-gray-500 md:mt-4 md:block">{description}</p>
 
-          <div className="mt-4 md:mt-8">
-            <a
-              href={createLink}
-              className="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
-            >
-              Create new
-            </a>
-          </div>
+          {createLink && (
+            <div className="mt-4 md:mt-8">
+              <a
+                href={createLink}
+                className="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              >
+                Create new
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
