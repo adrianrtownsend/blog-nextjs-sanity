@@ -37,11 +37,13 @@ export default defineType({
       name: 'completed',
       title: 'Completed',
       type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'favorited',
       title: 'Favorited',
       type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'date',
