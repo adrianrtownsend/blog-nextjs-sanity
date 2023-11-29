@@ -10,9 +10,15 @@ interface IConfirmModalProps {
   }
   title?: string
   content?: string
+  onConfirm?: () => Promise<void>
 }
 
-const ConfirmModal = ({ actions, title, content }: IConfirmModalProps) => {
+const ConfirmModal = ({
+  actions,
+  title,
+  content,
+  onConfirm,
+}: IConfirmModalProps) => {
   const [open, setOpen] = useState(false)
 
   const cancelButtonRef = useRef(null)
@@ -89,7 +95,7 @@ const ConfirmModal = ({ actions, title, content }: IConfirmModalProps) => {
                     <button
                       type="button"
                       className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                      onClick={() => setOpen(false)}
+                      onClick={onConfirm}
                     >
                       Deactivate
                     </button>

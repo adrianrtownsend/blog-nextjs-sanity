@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import MoreStories from './MoreStories'
 import UserPageHead from './UserPageHead'
 import UserTitle from './UserTitle'
+import UserCard from 'components/Cards/UserCard'
 
 export interface UserPageProps {
   preview?: boolean
@@ -26,6 +27,8 @@ export default function UserPage(props: UserPageProps) {
     notFound()
   }
 
+  console.log('user from page: ', user)
+
   return (
     <>
       <UserPageHead settings={settings} user={user} />
@@ -36,16 +39,9 @@ export default function UserPage(props: UserPageProps) {
         ) : (
           <>
             <article>
-              {/* <UserHeader
-                  title={user.title}
-                  coverImage={user.coverImage}
-                  date={user.date}
-                  author={user.author}
-                /> */}
-              {/* <UserBody content={user.content} /> */}
+              <UserCard {...user} />
             </article>
             <SectionSeparator />
-            {moreUsers?.length > 0 && <MoreStories users={moreUsers} />}
           </>
         )}
       </Layout>

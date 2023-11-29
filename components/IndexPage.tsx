@@ -3,6 +3,7 @@ import Layout from 'components/BlogLayout'
 import IndexPageHead from 'components/IndexPageHead'
 import type { Event, Post, Settings, Todo, User } from 'lib/sanity.queries'
 
+import Loading from './Animations/Loading'
 import Footer from './Footer/Footer'
 import Hero from './Hero/Hero'
 import Navbar from './Navbars/Navbar'
@@ -29,6 +30,7 @@ export default function IndexPage(props: IndexPageProps) {
       scrollId: 'todos',
       title: 'Todos',
       description: 'Basic Todo items',
+      createLink: '/todos/new',
     },
     {
       type: '_user',
@@ -44,6 +46,7 @@ export default function IndexPage(props: IndexPageProps) {
     //   scrollId: 'posts',
     //   title: 'Posts',
     //   description: 'Basic Post items',
+    // createLink: '/todos/new'
     // },
     {
       type: '_event',
@@ -51,6 +54,7 @@ export default function IndexPage(props: IndexPageProps) {
       scrollId: 'events',
       title: 'Events',
       description: 'Basic Event items',
+      createLink: '/events/new',
     },
   ]
 
@@ -66,7 +70,7 @@ export default function IndexPage(props: IndexPageProps) {
         <Navbar />
         <Hero />
         <ContentGridSection />
-        <Container>{itemSections}</Container>
+        {loading ? <Loading /> : <Container>{itemSections}</Container>}
         <Footer />
       </Layout>
     </>
