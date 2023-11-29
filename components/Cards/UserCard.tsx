@@ -9,7 +9,7 @@ interface IUserCardProps {
 
 const UserCard = (props: IUserCardProps) => {
   const { name, nickname, picture, slug } = props
-  console.log('user props: ', props)
+
   return (
     <article className="rounded-xl border border-gray-700 bg-gray-800 p-4">
       <Link href={`/users/${slug}`}>

@@ -1,6 +1,7 @@
-import { CalendarIcon, MapPinIcon, UserIcon } from '@heroicons/react/20/solid'
+import { CalendarIcon, UserIcon } from '@heroicons/react/20/solid'
 import { formatDateRelative } from 'components/Cards/TodoCard'
 import ConfirmModal from 'components/Modals/ConfirmModal'
+import Link from 'next/link'
 
 export interface IItemHeaderProps {
   item?: {
@@ -20,13 +21,15 @@ const ItemHeader = ({ item, onConfirm }: IItemHeaderProps) => {
           {item.title}
         </h2>
         <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <UserIcon
-              className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-              aria-hidden="true"
-            />
-            {item?.user?.name || item?.user?.nickname}
-          </div>
+          <Link href={`/users/${item?.user?.slug}`}>
+            <div className="mt-2 flex items-center text-sm text-gray-500">
+              <UserIcon
+                className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                aria-hidden="true"
+              />
+              {item?.user?.name || item?.user?.nickname}
+            </div>
+          </Link>
           {item.date && (
             <div className="mt-2 flex items-center text-sm text-gray-500">
               <CalendarIcon
@@ -36,13 +39,6 @@ const ItemHeader = ({ item, onConfirm }: IItemHeaderProps) => {
               {formatDateRelative(item.date)}
             </div>
           )}
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <MapPinIcon
-              className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-              aria-hidden="true"
-            />
-            {item.completed ? 'True' : 'False'}
-          </div>
         </div>
       </div>
       <div className="mt-5 flex lg:ml-4 lg:mt-0">
