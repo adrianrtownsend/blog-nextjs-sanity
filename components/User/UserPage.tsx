@@ -1,3 +1,4 @@
+import UserCard from 'components/Cards/UserCard'
 import Layout from 'components/Layouts/Layout'
 import SectionSeparator from 'components/SectionSeparator'
 import type { Settings, User } from 'lib/sanity.queries'
@@ -6,7 +7,6 @@ import { notFound } from 'next/navigation'
 import MoreStories from './MoreStories'
 import UserPageHead from './UserPageHead'
 import UserTitle from './UserTitle'
-import UserCard from 'components/Cards/UserCard'
 
 export interface UserPageProps {
   preview?: boolean
