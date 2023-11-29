@@ -2,55 +2,34 @@ import { writeToken } from 'lib/sanity.api'
 
 import { getClient, getUserByUserId } from './sanity.client'
 
-export async function updateDocumentTitle(_id, title) {
-  const client = getClient(undefined, {
-    token: writeToken,
-  })
-  const result = client.patch(_id).set({ title })
-  return result
-}
-
-/**
- * Posts
- */
-export interface ICreatePostProps {
-  title: string
-  content: string
-}
-
-export const createPost = ({ title, content }: ICreatePostProps, userId) => {
-  const client = getClient(undefined, {
-    token: writeToken,
-  })
-  return client.create({
-    _type: 'post',
-    title,
-    content,
-    author: {
-      _type: 'reference',
-      _ref: userId,
-    },
-  })
-}
-
-/**
- * Todos
- */
 export interface ICreateTodoProps {
+  _type: string
   title: string
   content: string
   dueDate: string
   completed: boolean
   favorited: boolean
 }
+export interface IEditTodoProps {
+  _id?: string
+  title?: string
+  content?: string
+  dueDate?: string
+  completed?: boolean
+  favorited?: boolean
+}
 
-const generateSlug = (text: string) => ({
+export const generateSlug = (text: string) => ({
   slug: { _type: 'slug', current: text.replace(/\s+/g, '-') },
 })
 
-export const createTodo = async (
-  { title, content, dueDate, completed, favorited }: ICreateTodoProps,
+/**
+ * Create Item
+ */
+export const createItem = async (
+  fields: ICreateTodoProps,
   userId,
+  slugField,
 ) => {
   const user = await getUserByUserId(userId)
   if (!user) {
@@ -62,37 +41,50 @@ export const createTodo = async (
     })
 
     return writeClient.create({
-      _type: 'todo',
-      title,
-      content,
-      dueDate,
-      completed,
-      favorited,
+      ...fields,
       user: {
         _type: 'reference',
         _ref: user._id,
       },
-      ...generateSlug(title),
+      ...generateSlug(fields[slugField]),
     })
   }
 }
 
 /**
- * Users
+ * Edit Item
  */
-export const createUser = async (user) => {
-  const client = getClient(undefined, {
+export const editItem = (fields: IEditTodoProps) => {
+  const { _id } = fields
+  const writeClient = getClient(undefined, {
     token: writeToken,
   })
-  return client.create(user)
+
+  return writeClient
+    .patch(_id)
+    .set(fields)
+    .commit()
+    .then((res) => {
+      return res
+    })
+    .catch((error) => {
+      console.error('Edit failed: ', error.message)
+      throw error
+    })
 }
 
-/**
- * Events
- */
-export const createEvent = async (event) => {
-  const client = getClient(undefined, {
+export const deleteItem = (id: string) => {
+  const writeClient = getClient(undefined, {
     token: writeToken,
   })
-  return client.create(event)
+
+  return writeClient
+    .delete(id)
+    .then(() => {
+      return 'Item deleted'
+    })
+    .catch((error) => {
+      console.error('Delete failed: ', error.message)
+      throw error
+    })
 }
