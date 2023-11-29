@@ -1,27 +1,53 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { TrashIcon } from '@heroicons/react/20/solid'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 
 interface IConfirmModalProps {
-  actions?: {
-    confirm?: { label?: string; action?: () => void }
-    cancel?: { label?: string; action?: () => void }
-  }
-  title?: string
-  content?: string
+  type?: string
   onConfirm?: () => Promise<void>
 }
 
-const ConfirmModal = ({
-  actions,
-  title,
-  content,
-  onConfirm,
-}: IConfirmModalProps) => {
+const types = [
+  {
+    type: 'delete',
+    label: (
+      <>
+        <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+        Delete
+      </>
+    ),
+    title: 'Delete item',
+    content: 'Are you sure you wish to delete this item?',
+    confirmLabel: 'Delete',
+    completed: {
+      title: 'Delete successful',
+      content: 'Item was successfully deleted',
+    },
+  },
+  {
+    type: 'deactivate',
+    label: (
+      <>
+        <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+        Deactivate
+      </>
+    ),
+    title: 'Deactivate Account',
+    content:
+      'Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.',
+    confirmLabel: 'Deactivate',
+  },
+]
+
+const ConfirmModal = ({ type = 'delete', onConfirm }: IConfirmModalProps) => {
   const [open, setOpen] = useState(false)
 
   const cancelButtonRef = useRef(null)
+
+  const { label, title, content, confirmLabel } = types.find(
+    (t) => t.type === type,
+  )
 
   return (
     <>
@@ -31,8 +57,7 @@ const ConfirmModal = ({
           className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
           onClick={() => setOpen(true)}
         >
-          <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-          Delete
+          {label}
         </button>
       </span>
       <Transition.Root show={open} as={Fragment}>
@@ -79,14 +104,10 @@ const ConfirmModal = ({
                           as="h3"
                           className="text-base font-semibold leading-6 text-gray-900"
                         >
-                          Deactivate account
+                          {title}
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-sm text-gray-500">
-                            Are you sure you want to deactivate your account?
-                            All of your data will be permanently removed. This
-                            action cannot be undone.
-                          </p>
+                          <p className="text-sm text-gray-500">{content}</p>
                         </div>
                       </div>
                     </div>
@@ -97,7 +118,7 @@ const ConfirmModal = ({
                       className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                       onClick={onConfirm}
                     >
-                      Deactivate
+                      {confirmLabel}
                     </button>
                     <button
                       type="button"
