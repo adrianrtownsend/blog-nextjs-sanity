@@ -57,20 +57,20 @@ export const eventDateStatusFormat = (startDate: string, endDate: string) => {
 const EventCard = (props) => {
   const { title, content, date, startDate, endDate, user, slug } = props
   return (
-    <article className="rounded-xl bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
+    <article className="rounded-xl bg-white p-4 ring ring-emerald-50 sm:p-6 lg:p-8">
       <div className="flex items-start sm:gap-8">
         <div
-          className="hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+          className="hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-emerald-500"
           aria-hidden="true"
         >
           <CalendarIcon
-            className="mx-auto h-10 w-10 flex-shrink-0 text-indigo-500"
+            className="mx-auto h-10 w-10 flex-shrink-0 text-emerald-500"
             aria-hidden="true"
           />
         </div>
 
         <div>
-          <strong className="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white">
+          <strong className="rounded border border-emerald-500 bg-emerald-500 px-3 py-1.5 text-[10px] font-medium text-white">
             {eventDateStatusFormat(startDate, endDate)}
           </strong>
 

@@ -23,7 +23,7 @@ const links = [
 const PublicHeaderButtons = () => (
   <>
     <Link
-      className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+      className="rounded-md bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white shadow"
       href="/api/auth/login"
     >
       Login
@@ -31,7 +31,7 @@ const PublicHeaderButtons = () => (
 
     <div className="hidden sm:flex">
       <Link
-        className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+        className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-emerald-600"
         href="/api/auth/signup"
       >
         Sign Up
@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
-            <Link className="block text-teal-600" href="/">
+            <Link className="block text-emerald-600" href="/">
               <span className="sr-only">Home</span>
               <svg
                 className="h-8"
