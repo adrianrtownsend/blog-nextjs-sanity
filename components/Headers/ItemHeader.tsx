@@ -1,10 +1,11 @@
-import { CalendarIcon, UserIcon } from '@heroicons/react/20/solid'
+import { CalendarIcon, PlusIcon, UserIcon } from '@heroicons/react/20/solid'
 import { formatDateRelative } from 'components/Cards/TodoCard'
 import ConfirmModal from 'components/Modals/ConfirmModal'
 import Link from 'next/link'
 
 export interface IItemHeaderProps {
   item?: {
+    _type: string
     title?: string
     user?: any
     date?: string
@@ -43,6 +44,12 @@ const ItemHeader = ({ item, onConfirm }: IItemHeaderProps) => {
       </div>
       <div className="mt-5 flex lg:ml-4 lg:mt-0">
         <ConfirmModal onConfirm={onConfirm} />
+        <Link href={`/${item._type}s/new`}>
+          <button type="button">
+            <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+            New
+          </button>
+        </Link>
       </div>
     </div>
   )

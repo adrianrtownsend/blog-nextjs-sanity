@@ -4,6 +4,7 @@ import { getFormLayout } from './useLayout'
 
 const Form = ({ title = '', content = '', type, form, onSubmit }) => {
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -19,7 +20,7 @@ const Form = ({ title = '', content = '', type, form, onSubmit }) => {
                 {title}
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">{content}</p>
-              {getFormLayout(type, register, errors)}
+              {getFormLayout(type, register, errors, control)}
             </div>
           </div>
 

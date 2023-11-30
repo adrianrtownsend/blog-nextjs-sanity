@@ -18,39 +18,31 @@ interface EventCardProps {
 }
 
 export const eventDateStatusFormat = (startDate: string, endDate: string) => {
-  /**
-   * check if startDate less than now()
-   *
-   * check if endDate greater than now()
-   *
-   * > format distance from endDate
-   */
-
   const today = new Date()
   const start = new Date(startDate)
-  const end = endDate ? new Date(endDate) : new Date()
+  const end = new Date(endDate)
 
-  if (compareAsc(today, start)) {
-    return (
-      'Starts ' +
-      formatDistance(start, today, {
-        addSuffix: true,
-      })
-    )
-  } else if (compareAsc(end, today)) {
-    return (
-      'Ends ' +
-      formatDistance(today, end, {
-        addSuffix: true,
-      })
-    )
-  } else {
+  /**
+   * - check if endDateTime passed
+   * - check if startTimePassed
+   * else time until
+   */
+  if (compareAsc(today, end) === 1) {
     return (
       'Ended ' +
       formatDistance(end, today, {
         addSuffix: true,
       })
     )
+  } else if (compareAsc(today, start) === 1) {
+    return (
+      'Started ' +
+      formatDistance(start, today, { addSuffix: true }) +
+      ' | Ends in ' +
+      formatDistance(today, end)
+    )
+  } else {
+    return 'Starts in ' + formatDistance(today, start)
   }
 }
 
@@ -81,7 +73,6 @@ const EventCard = (props) => {
           </h3>
 
           <p className="mt-1 text-sm text-gray-700">{content}</p>
-
           <div className="mt-4 sm:flex sm:items-center sm:gap-2">
             <div className="flex items-center gap-1 text-gray-500">
               <CalendarIcon

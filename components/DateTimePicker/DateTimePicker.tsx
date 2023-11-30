@@ -1,21 +1,17 @@
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import dayjs from 'dayjs'
-import * as React from 'react'
+import 'react-datepicker/dist/react-datepicker.css'
 
-const todayAtNoon = dayjs().set('hour', 12).startOf('hour')
-const todayAt3PM = dayjs().set('hour', 15).startOf('hour')
+import DatePicker from 'react-datepicker'
 
-export default function DateTimeValidationMinDateTime() {
+const DateTimePicker = (field) => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateTimePicker']}>
-        <DemoItem label="DateTimePicker">
-          <DateTimePicker defaultValue={todayAtNoon} minDateTime={todayAt3PM} />
-        </DemoItem>
-      </DemoContainer>
-    </LocalizationProvider>
+    <DatePicker
+      selected={new Date(field.value)}
+      onChange={(date) => field.onChange(date)}
+      timeInputLabel="Time:"
+      dateFormat="MM/dd/yyyy h:mm aa"
+      showTimeInput
+    />
   )
 }
+
+export default DateTimePicker

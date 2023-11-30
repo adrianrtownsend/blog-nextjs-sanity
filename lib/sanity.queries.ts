@@ -206,32 +206,8 @@ export interface Settings {
   }
 }
 
-export interface Todo {
-  _id: string
-  title?: string
-  coverImage?: any
-  date?: string
-  _updatedAt?: string
-  completed?: boolean
-  excerpt?: string
-  author?: Author
-  slug?: string
-  content?: any
-}
-
-export interface Event {
-  _id: string
-  title?: string
-  coverImage?: any
-  date?: string
-  _updatedAt?: string
-  excerpt?: string
-  author?: Author
-  slug?: string
-  content?: any
-}
-
 export interface User {
+  _type: string
   _id: string
   name?: string
   nickname?: string
@@ -241,4 +217,33 @@ export interface User {
   _updatedAt?: string
   user_id?: string
   type?: string
+}
+
+export interface Todo {
+  _type: string
+  _id: string
+  title?: string
+  coverImage?: any
+  date?: string
+  dueDate?: string
+  _updatedAt?: string
+  completed?: boolean
+  excerpt?: string
+  author?: Author
+  slug?: string
+  content?: any
+  user?: User
+}
+
+export interface Event {
+  _type: string
+  _id: string
+  title?: string
+  content?: string
+  startDate?: string
+  endDate?: string
+  date?: string
+  slug?: string
+  _updatedAt?: string
+  user?: User
 }
