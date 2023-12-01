@@ -36,23 +36,23 @@ export default function TodoPage(props: TodoPageProps) {
     defaultValues: {
       title: todo?.title ?? '',
       content: todo?.content ?? '',
+      dueDate: todo?.dueDate ?? '',
     },
   })
 
-  const editTodo = async (formData) => {
-    try {
-      await editItem({ _id: todo._id, ...formData })
-    } catch (error) {
-      console.error('Error creating post:', error)
-    }
-  }
+  const editTodo = (formData) =>
+    editItem({ _id: todo._id, ...formData })
+      .then(() => router.reload())
+      .catch((err) => {
+        console.error('Error creating todo:', err)
+      })
 
-  const deleteTodo = async () => {
-    try {
-      await deleteItem(todo._id)
-      router.push('/')
-    } catch (error) {}
-  }
+  const deleteTodo = () =>
+    deleteItem(todo._id)
+      .then(() => router.push('/'))
+      .catch((err) => {
+        console.error('Error deleting todo:', err)
+      })
 
   return (
     <>

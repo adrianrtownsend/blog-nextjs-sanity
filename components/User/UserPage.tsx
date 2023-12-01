@@ -27,8 +27,6 @@ export default function UserPage(props: UserPageProps) {
     notFound()
   }
 
-  console.log('user from page: ', user)
-
   return (
     <>
       <UserPageHead settings={settings} user={user} />

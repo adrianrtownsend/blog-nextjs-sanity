@@ -3,51 +3,29 @@ import { TrashIcon } from '@heroicons/react/20/solid'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import React, { Fragment, useRef, useState } from 'react'
 
-interface IConfirmModalProps {
+interface ICompletedModalProps {
   type?: string
-  onConfirm?: () => Promise<boolean | void>
+  onCompleted?: () => Promise<void>
 }
 
 const types = [
   {
     type: 'delete',
-    label: (
-      <>
-        <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-        Delete
-      </>
-    ),
-    title: 'Delete item',
-    content: 'Are you sure you wish to delete this item?',
-    confirmLabel: 'Delete',
-    completed: {
-      title: 'Delete successful',
-      content: 'Item was successfully deleted',
-    },
-  },
-  {
-    type: 'deactivate',
-    label: (
-      <>
-        <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-        Deactivate
-      </>
-    ),
-    title: 'Deactivate Account',
-    content:
-      'Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.',
-    confirmLabel: 'Deactivate',
+    title: 'Delete successful',
+    content: 'Item was successfully deleted',
+    label: 'Return home',
   },
 ]
 
-const ConfirmModal = ({ type = 'delete', onConfirm }: IConfirmModalProps) => {
+const CompletedModal = ({
+  type = 'delete',
+  onCompleted,
+}: ICompletedModalProps) => {
   const [open, setOpen] = useState(false)
 
   const cancelButtonRef = useRef(null)
 
-  const { label, title, content, confirmLabel } = types.find(
-    (t) => t.type === type,
-  )
+  const { label, title, content } = types.find((t) => t.type === type)
 
   return (
     <>
@@ -116,17 +94,9 @@ const ConfirmModal = ({ type = 'delete', onConfirm }: IConfirmModalProps) => {
                     <button
                       type="button"
                       className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                      onClick={onConfirm}
+                      onClick={onCompleted}
                     >
-                      {confirmLabel}
-                    </button>
-                    <button
-                      type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                      onClick={() => setOpen(false)}
-                      ref={cancelButtonRef}
-                    >
-                      Cancel
+                      {label}
                     </button>
                   </div>
                 </Dialog.Panel>
@@ -139,4 +109,4 @@ const ConfirmModal = ({ type = 'delete', onConfirm }: IConfirmModalProps) => {
   )
 }
 
-export default ConfirmModal
+export default CompletedModal

@@ -2,13 +2,14 @@ import Link from 'next/link'
 
 interface IUserCardProps {
   name?: string
+  email?: string
   nickname?: string
   picture?: string
   slug?: string
 }
 
 const UserCard = (props: IUserCardProps) => {
-  const { name, nickname, picture, slug } = props
+  const { name, nickname, picture, email, slug } = props
 
   return (
     <article className="rounded-xl border border-gray-700 bg-gray-800 p-4">
@@ -21,16 +22,27 @@ const UserCard = (props: IUserCardProps) => {
           />
 
           <div>
-            <h3 className="text-lg font-medium text-white">
-              {name || nickname}
-            </h3>
+            <h3 className="text-lg font-medium text-white">{nickname}</h3>
 
             <div className="flow-root">
               <ul className="-m-1 flex flex-wrap">
                 <li className="p-1 leading-none">
                   <span className="text-xs font-medium text-gray-300">
-                    {' '}
-                    {/* Twitter{' '} */}
+                    {name}
+                  </span>
+                </li>
+                <li className="p-1 leading-none">
+                  <span
+                    className="hidden sm:block text-gray-300"
+                    aria-hidden="true"
+                  >
+                    &middot;
+                  </span>
+                </li>
+
+                <li className="p-1 leading-none">
+                  <span className="text-xs font-medium text-gray-300">
+                    {email}
                   </span>
                 </li>
               </ul>

@@ -127,15 +127,6 @@ const Footer = () => {
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <a
-                    href="#posts"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    Posts
-                  </a>
-                </li>
-
-                <li>
-                  <a
                     href="#todos"
                     className="text-gray-700 transition hover:opacity-75"
                   >
@@ -149,6 +140,15 @@ const Footer = () => {
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     Users
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="#events"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    Events
                   </a>
                 </li>
               </ul>

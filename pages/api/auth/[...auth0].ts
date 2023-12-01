@@ -6,7 +6,7 @@ export default handleAuth({
       authorizationParams: {
         prompt: 'login',
       },
-      returnTo: '/profile',
+      returnTo: '/',
     })
   },
 })
