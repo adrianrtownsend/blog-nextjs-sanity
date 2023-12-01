@@ -1,15 +1,16 @@
+import { useUser } from '@auth0/nextjs-auth0/client'
 import Container from 'components/BlogContainer'
 import Layout from 'components/BlogLayout'
 import IndexPageHead from 'components/IndexPageHead'
 import type { Event, Post, Settings, Todo, User } from 'lib/sanity.queries'
 
+import * as demo from '../demo/demo'
 import Loading from './Animations/Loading'
 import Footer from './Footer/Footer'
 import Hero from './Hero/Hero'
 import Navbar from './Navbars/Navbar'
 import ContentGridSection from './Sections/ContentGridSection'
 import ItemSection from './Sections/ItemSection'
-import { useUser } from '@auth0/nextjs-auth0/client'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -24,11 +25,11 @@ export interface IndexPageProps {
 export default function IndexPage(props: IndexPageProps) {
   const { preview, loading, events, posts, settings, todos, users } = props
   const { user } = useUser()
-  console.log('user at front: ', user)
+
   const sections = [
     {
       type: '_todo',
-      items: todos,
+      items: user ? todos : demo.todos,
       scrollId: 'todos',
       title: 'Todos',
       description: 'Basic Todo items',
@@ -37,7 +38,7 @@ export default function IndexPage(props: IndexPageProps) {
     },
     {
       type: '_user',
-      items: users,
+      items: user ? users : demo.users,
       scrollId: 'users',
       title: 'Users',
       description: 'Active user accounts for app',
@@ -53,7 +54,7 @@ export default function IndexPage(props: IndexPageProps) {
     // },
     {
       type: '_event',
-      items: events,
+      items: user ? events : demo.events,
       scrollId: 'events',
       title: 'Events',
       description: 'Basic Event items',
