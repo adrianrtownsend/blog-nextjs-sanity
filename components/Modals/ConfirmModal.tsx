@@ -5,7 +5,7 @@ import React, { Fragment, useRef, useState } from 'react'
 
 interface IConfirmModalProps {
   type?: string
-  onConfirm?: () => Promise<void>
+  onConfirm?: () => Promise<boolean | void>
 }
 
 const types = [

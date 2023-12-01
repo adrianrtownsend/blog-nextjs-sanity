@@ -11,7 +11,7 @@ export interface IItemHeaderProps {
     date?: string
     completed?: boolean
   }
-  onConfirm?: () => Promise<void>
+  onConfirm?: () => Promise<boolean | void>
 }
 
 const ItemHeader = ({ item, onConfirm }: IItemHeaderProps) => {
@@ -42,10 +42,13 @@ const ItemHeader = ({ item, onConfirm }: IItemHeaderProps) => {
           )}
         </div>
       </div>
-      <div className="mt-5 flex lg:ml-4 lg:mt-0">
+      <div className="mt-5 flex lg:ml-4 lg:mt-0 gap-2">
         <ConfirmModal onConfirm={onConfirm} />
         <Link href={`/${item._type}s/new`}>
-          <button type="button">
+          <button
+            type="button"
+            className="inline-flex items-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+          >
             <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
             New
           </button>
