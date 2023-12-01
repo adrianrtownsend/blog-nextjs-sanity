@@ -1,3 +1,4 @@
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { PencilIcon } from '@heroicons/react/20/solid'
 import FormAccordion from 'components/Accordion/FormAccordion'
 import Loading from 'components/Animations/Loading'
@@ -24,6 +25,7 @@ export interface TodoPageProps {
 export default function TodoPage(props: TodoPageProps) {
   const { preview, loading, todo, settings } = props
 
+  const { user } = useUser()
   const router = useRouter()
 
   const slug = todo?.slug
@@ -53,6 +55,7 @@ export default function TodoPage(props: TodoPageProps) {
       .catch((err) => {
         console.error('Error deleting todo:', err)
       })
+  if (!user) return <Loading />
 
   return (
     <>
@@ -66,25 +69,27 @@ export default function TodoPage(props: TodoPageProps) {
             <article>
               <TodoCard {...todo} />
               <ItemHeader item={todo} onConfirm={deleteTodo} />
-              <FormAccordion
-                label={
-                  <span className="inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
-                    <PencilIcon
-                      className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                    Edit
-                  </span>
-                }
-              >
-                <Form
-                  title="Edit Todo"
-                  type="todo"
-                  content="Update field values"
-                  form={form}
-                  onSubmit={editTodo}
-                />
-              </FormAccordion>
+              {todo.user._id === user.sub && (
+                <FormAccordion
+                  label={
+                    <span className="inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
+                      <PencilIcon
+                        className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                      Edit
+                    </span>
+                  }
+                >
+                  <Form
+                    title="Edit Todo"
+                    type="todo"
+                    content="Update field values"
+                    form={form}
+                    onSubmit={editTodo}
+                  />
+                </FormAccordion>
+              )}
             </article>
             <SectionSeparator />
           </>
