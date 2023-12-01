@@ -10,6 +10,7 @@ export default function MoreStories({ todos }: { todos: Todo[] }) {
       <div className="mb-32 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
         {todos.map((todo) => (
           <TodoPreview
+            _type={todo._type}
             key={todo._id}
             title={todo.title}
             date={todo.date}

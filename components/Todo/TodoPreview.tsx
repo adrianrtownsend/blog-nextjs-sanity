@@ -3,7 +3,12 @@ import Link from 'next/link'
 
 import Date from './TodoDate'
 
-export default function TodoPreview({ title, date, slug }: Omit<Todo, '_id'>) {
+export default function TodoPreview({
+  title,
+  date,
+  slug,
+  _type,
+}: Omit<Todo, '_id'>) {
   return (
     <div>
       <h3 className="mb-3 text-3xl leading-snug">
