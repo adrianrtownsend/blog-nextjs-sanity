@@ -10,6 +10,6 @@ export default async function signup(
       prompt: 'login',
       screen_hint: 'signup',
     },
-    returnTo: '/profile',
+    returnTo: '/',
   })
 }
