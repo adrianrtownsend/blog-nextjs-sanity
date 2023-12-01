@@ -21,7 +21,7 @@ export const formLayouts = [
       {
         name: 'dueDate',
         label: 'Due Date',
-        type: 'datetime',
+        type: 'dateTime',
       },
     ],
   },
