@@ -11,16 +11,25 @@ export const formatDateRelative = (date: string) => {
 }
 
 const TodoCard = (props) => {
-  const { date, title, user, slug, content, dueDate, completed, favorited } =
-    props
+  const {
+    date,
+    title,
+    user,
+    slug,
+    content,
+    dueDate,
+    completed,
+    favorited,
+    toggleTodo,
+  } = props
 
-  const [isCompleted, setIsCompleted] = useState(false)
+  const [toggleDisabled, setToggleDisabled] = useState(false)
 
-  const toggleCompleted = () => {
-    setIsCompleted((prev) => !prev)
+  const handleTodoToggle = () => {
+    setToggleDisabled(true)
+    toggleTodo()
   }
 
-  console.log('todo props: ', props)
   return (
     <Link
       href={`/todos/${slug}`}
@@ -38,7 +47,11 @@ const TodoCard = (props) => {
             <dt className="sr-only">Title</dt>
 
             <dd className="font-medium">{title}</dd>
-            <BasicSwitch isEnabled={isCompleted} />
+            <BasicSwitch
+              isEnabled={completed}
+              handleSwitch={handleTodoToggle}
+              disabled={toggleDisabled}
+            />
           </div>
           <div>
             <dt className="sr-only">User</dt>

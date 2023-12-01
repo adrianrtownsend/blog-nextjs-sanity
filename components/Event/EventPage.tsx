@@ -41,22 +41,19 @@ export default function EventPage(props: EventPageProps) {
     },
   })
 
-  const editEvent = async (formData) => {
-    try {
-      console.log('formData: ', formData)
-      const res = await editItem({ _id: event._id, ...formData })
-      console.log('done: ', res)
-    } catch (error) {
-      console.error('error with post: ', error)
-    }
-  }
+  const editEvent = (formData) =>
+    editItem({ _id: event._id, ...formData })
+      .then(() => router.reload())
+      .catch((err) => {
+        console.error('Error creating event:', err)
+      })
 
-  const deleteEvent = async () => {
-    try {
-      await deleteItem(event._id)
-      router.push('/')
-    } catch (error) {}
-  }
+  const deleteEvent = () =>
+    deleteItem(event._id)
+      .then(() => router.push('/'))
+      .catch((err) => {
+        console.error('Error deleting event:', err)
+      })
 
   return (
     <>
