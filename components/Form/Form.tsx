@@ -1,5 +1,3 @@
-// components/TodoCreateReactHookForm.js
-
 import { getFormLayout } from './useLayout'
 
 const Form = ({ title = '', content = '', type, form, onSubmit }) => {
@@ -12,15 +10,17 @@ const Form = ({ title = '', content = '', type, form, onSubmit }) => {
 
   return (
     <section>
-      <div className="mx-auto w-full p-4 ">
+      <div className="mx-auto w-full p-4">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-12">
-            <div className="border-b border-gray-900/10 pb-12">
+            <div className="rounded-lg p-6 bg-gray-100">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 {title}
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">{content}</p>
-              {getFormLayout(type, register, errors, control)}
+              <div className="grid grid-cols-2 gap-3">
+                {getFormLayout(type, register, errors, control)}
+              </div>
             </div>
           </div>
 

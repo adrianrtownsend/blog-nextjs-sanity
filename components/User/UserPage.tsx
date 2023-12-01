@@ -1,12 +1,12 @@
+import { useUser } from '@auth0/nextjs-auth0/client'
+import Loading from 'components/Animations/Loading'
 import UserCard from 'components/Cards/UserCard'
 import Layout from 'components/Layouts/Layout'
 import SectionSeparator from 'components/SectionSeparator'
 import type { Settings, User } from 'lib/sanity.queries'
 import { notFound } from 'next/navigation'
 
-import MoreStories from './MoreStories'
 import UserPageHead from './UserPageHead'
-import UserTitle from './UserTitle'
 
 export interface UserPageProps {
   preview?: boolean
@@ -22,10 +22,13 @@ export default function UserPage(props: UserPageProps) {
   const { preview, loading, moreUsers = NO_USERS, user, settings } = props
 
   const slug = user?.slug
+  const { user: currentUser } = useUser()
 
   if (!slug && !preview) {
     notFound()
   }
+
+  if (!currentUser) return <Loading />
 
   return (
     <>
@@ -33,7 +36,7 @@ export default function UserPage(props: UserPageProps) {
 
       <Layout preview={preview} loading={loading}>
         {preview && !user ? (
-          <UserTitle>Loading…</UserTitle>
+          <Loading />
         ) : (
           <>
             <article>

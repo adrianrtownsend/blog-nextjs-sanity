@@ -8,58 +8,60 @@ export const getFormField = (
   register,
   errors,
   control,
+  index,
 ) => {
   const fields = {
     input: (
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-3">
-          <label
-            htmlFor="first-name"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            {label}
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
-              {...register(name, validation)}
-            />
-            {errors.title && <p>{errors?.title?.message}</p>}
-          </div>
+      <div className="mt-10 gap-x-6 gap-y-8" key={index}>
+        <label
+          htmlFor="first-name"
+          className="block text-sm font-medium leading-6 text-gray-900"
+        >
+          {label}
+        </label>
+        <div className="mt-2">
+          <input
+            type="text"
+            className="w-full rounded-lg border-gray-200 p-3 text-sm"
+            {...register(name, validation)}
+          />
+          {errors.title && (
+            <p className="text-red-600 p-1">{errors?.title?.message}</p>
+          )}
         </div>
       </div>
     ),
     textarea: (
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-3">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            {label}
-          </label>
-          <div className="mt-2">
-            <textarea
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
-              {...register(name, validation)}
-            />
-            {errors[name] && <p>{errors[name].message}</p>}
-          </div>
+      <div className="col-span-2 mt-10 gap-x-6 gap-y-8" key={index}>
+        <label className="block text-sm font-medium leading-6 text-gray-900">
+          {label}
+        </label>
+        <div className="mt-2">
+          <textarea
+            className="w-full rounded-lg border-gray-200 p-3 text-sm"
+            rows={8}
+            {...register(name, validation)}
+          />
+          {errors[name] && (
+            <p className="text-red-600 p-1">{errors[name].message}</p>
+          )}
         </div>
       </div>
     ),
     dateTime: (
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-3">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            {label}
-          </label>
-          <div className="mt-2">
-            <Controller
-              name={name}
-              control={control}
-              render={({ field }) => <DateTimePicker {...field} />}
-            />
-            {errors[name] && <p>{errors[name].message}</p>}
-          </div>
+      <div className="mt-10 gap-x-6 gap-y-8" key={index}>
+        <label className="block text-sm font-medium leading-6 text-gray-900">
+          {label}
+        </label>
+        <div className="mt-2">
+          <Controller
+            name={name}
+            control={control}
+            render={({ field }) => <DateTimePicker {...field} />}
+          />
+          {errors[name] && (
+            <p className="text-red-600 p-1">{errors[name].message}</p>
+          )}
         </div>
       </div>
     ),
@@ -70,7 +72,7 @@ export const getFormField = (
 export const getFormLayout = (type, register, errors, control) => {
   const fields = formLayouts.find((l) => l.name === type)['fields']
 
-  return fields.map((f, index) => (
-    <div key={index}>{getFormField(f, register, errors, control)}</div>
-  ))
+  return fields.map((f, index) =>
+    getFormField(f, register, errors, control, index),
+  )
 }
