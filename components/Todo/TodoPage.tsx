@@ -36,18 +36,12 @@ export default function TodoPage(props: TodoPageProps) {
     defaultValues: {
       title: todo?.title ?? '',
       content: todo?.content ?? '',
+      dueDate: todo?.dueDate ?? '',
     },
   })
 
-  const editTodo = async (formData) =>
+  const editTodo = (formData) =>
     editItem({ _id: todo._id, ...formData })
-      .then(() => router.reload())
-      .catch((err) => {
-        console.error('Error creating todo:', err)
-      })
-
-  const toggleTodo = () =>
-    editItem({ _id: todo._id, completed: !todo.completed })
       .then(() => router.reload())
       .catch((err) => {
         console.error('Error creating todo:', err)
@@ -70,7 +64,7 @@ export default function TodoPage(props: TodoPageProps) {
         ) : (
           <>
             <article>
-              <TodoCard {...todo} toggleTodo={toggleTodo} />
+              <TodoCard {...todo} />
               <ItemHeader item={todo} onConfirm={deleteTodo} />
               <FormAccordion
                 label={

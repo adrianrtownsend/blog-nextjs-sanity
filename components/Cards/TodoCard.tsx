@@ -1,7 +1,9 @@
 import { ClockIcon } from '@heroicons/react/20/solid'
 import BasicSwitch from 'components/Switches/Switch'
 import { formatDistance } from 'date-fns'
+import { editItem } from 'lib/sanity.mutations'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export const formatDateRelative = (date: string) => {
@@ -12,6 +14,7 @@ export const formatDateRelative = (date: string) => {
 
 const TodoCard = (props) => {
   const {
+    _id,
     date,
     title,
     user,
@@ -20,15 +23,20 @@ const TodoCard = (props) => {
     dueDate,
     completed,
     favorited,
-    toggleTodo,
   } = props
 
   const [toggleDisabled, setToggleDisabled] = useState(false)
+  const router = useRouter()
 
-  const handleTodoToggle = () => {
-    setToggleDisabled(true)
-    toggleTodo()
-  }
+  const handleTodoToggle = () =>
+    editItem({ _id, completed: !completed })
+      .then(() => {
+        setToggleDisabled(true)
+        router.reload()
+      })
+      .catch((err) => {
+        console.error('Error creating todo:', err)
+      })
 
   return (
     <Link
@@ -70,8 +78,8 @@ const TodoCard = (props) => {
           </div>
         </dl>
 
-        {date && (
-          <div className="mt-1 flex items-center gap-8 text-xs">
+        <div className="mt-1 flex items-center gap-8 text-xs">
+          {date && (
             <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
               <ClockIcon
                 className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-600"
@@ -84,8 +92,22 @@ const TodoCard = (props) => {
                 <p className="font-medium">{formatDateRelative(date)}</p>
               </div>
             </div>
-          </div>
-        )}
+          )}
+          {dueDate && (
+            <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+              <ClockIcon
+                className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-600"
+                aria-hidden="true"
+              />
+
+              <div className="mt-1.5 sm:mt-0">
+                <p className="text-gray-500">Due Deadline</p>
+
+                <p className="font-medium">{formatDateRelative(dueDate)}</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </Link>
   )
