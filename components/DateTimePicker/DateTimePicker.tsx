@@ -10,6 +10,7 @@ const DateTimePicker = (field) => {
       timeInputLabel="Time:"
       dateFormat="MM/dd/yyyy h:mm aa"
       showTimeInput
+      className="p-2 rounded-lg"
     />
   )
 }
