@@ -15,6 +15,7 @@ const todoFields = groq`
   _id,
   title,
   date,
+  dueDate,
   content,
   _updatedAt,
   completed,
