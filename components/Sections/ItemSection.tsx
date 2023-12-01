@@ -62,7 +62,7 @@ const ItemSection = ({
         </div>
       </div>
 
-      <div className="flow-root overflow-auto max-h-96">
+      <div className="flow-root overflow-auto max-h-96 p-3">
         <dl className="-my-3 divide-y divide-gray-100 text-sm">
           {sectionItems}
         </dl>
